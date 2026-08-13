@@ -115,15 +115,16 @@ const { GoogleGenAI } = require('@google/genai');
 
 const ai = new GoogleGenAI({
   vertexai: true,
-  project: 'cicdtraining-498421',
-  location: 'global',
+  project: process.env.GOOGLE_CLOUD_PROJECT || 'mydemo-505323',
+  location: process.env.GOOGLE_CLOUD_LOCATION || 'global',
 });
 
 async function callGemini(prompt) {
   const response = await ai.models.generateContent({
-    model: 'gemini-3.5-flash',
+    model: 'gemini-2.5-flash',
     contents: prompt,
   });
+
   return response.text;
 }
 
